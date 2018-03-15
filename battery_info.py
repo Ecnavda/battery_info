@@ -60,9 +60,10 @@ def main(stdscr):
         count = 0
         for line in info.readlines():
             line = line.replace("_", " ")
-            line = line.replace("=", ": ")
-            if match_list[count] in line:
-                stdscr.addstr(count + 5, 23, line)
+            line = line.split("=")
+            if match_list[count] in line[0]:
+                stdscr.addstr(count + 5, 23, line[0], curses.A_BOLD)
+                stdscr.addstr(count + 5, 53, line[1], curses.A_BOLD)
                 count += 1
     
     # Wait for key press before clearing screen
